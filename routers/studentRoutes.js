@@ -8,7 +8,7 @@ const studentRoutes = express.Router();
 studentRoutes.get("/", async (req, res) => {
     try {
         const response = await Student.find();
-        res.json(response);
+        res.status(201).json(response);
     } catch(err){
         res.status(500).json({ error: "No data available" });
     }
@@ -18,7 +18,7 @@ studentRoutes.get("/:id", async (req, res) => {
     const {id} = req.params;
     try {
         const response = await Student.findById(id);
-        res.json(response)
+        res.status(201).json(response);
     } catch(err){
         res.status(404).json({ error: "Student doesn't exit" });
     }
@@ -29,7 +29,7 @@ studentRoutes.post("/", async (req, res) => {
     try {
         const {name, first_name, email} = req.body;
         const response = await Student.create({name, first_name, email});
-        res.json(response)
+        res.status(201).json(response)
     } catch(err){
         res.status(500).json({ error: 'Internal Server Error' });
     }
@@ -46,7 +46,7 @@ studentRoutes.put("/:id", async (req, res) => {
             res.status(404).json({ error: "Student doesn't exit" });
             return;
         }  
-        res.json(response)
+        res.status(201).json(response)
 
     } catch(err) {
         res.status(500).json({ message: "Internal server error", error: err.message });
@@ -76,7 +76,7 @@ studentRoutes.delete("/:id", async (req, res) => {
             res.status(404).json({ error: "Student doesn't exit" });
             return;
         }
-        res.json(response);
+        res.status(201).json(response);
     } catch (err) {
         res.status(500).json({ message: "Internal server error", error: err.message });
     }

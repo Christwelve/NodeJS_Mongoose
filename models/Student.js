@@ -3,15 +3,18 @@ import mongoose from "mongoose";
 const StudentSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+		// minlength: [1, "Please enter your name"]
     },
     first_name: {
         type: String,
-        required: true
+        required: true,
+		// minlength: [1, "Please enter your first name"]
     },
     email: {
         type: String,
-        required: true
+        required: true,
+		trim: true 
     }
 })
 
